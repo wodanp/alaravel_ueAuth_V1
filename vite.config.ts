@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
     plugins: [
@@ -17,12 +19,18 @@ export default defineConfig({
             refresh: true,
         }),
         vue(),
+        vueJsx({}),
         AutoImport({
             resolvers: [ElementPlusResolver()],
         }),
         Components({
             resolvers: [ElementPlusResolver()],
         }),
+        createSvgIconsPlugin({
+            iconDirs: [fileURLToPath(new URL('src/assets/svgs', import.meta.url)),],
+            symbolId: 'svg-[dir]-[name]',
+            svgoOptions: true
+        })
     ],
     resolve: {
         alias: [

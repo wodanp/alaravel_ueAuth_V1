@@ -10,30 +10,30 @@ const routes: RouteRecordRaw[] = [
         component: Layout,
         children: [
             { 
-                path: "/dashboard", name: "dashboard", 
+                path: "/dashboard", name: "dashboard", meta: {icon: 'icon'},
                 component: () => import("@/views/dashboard/Dashboard.vue")
             },
         ]
     },
     {
         path: '/register', name: 'register',
-        meta: {title: 'Register',},
+        meta: {title: 'Register', hidden: true},
         component: () => import('@/views/auth/Register.vue'),
     },    
     {
-        path: '/login', name: 'Login', meta: {title: 'Login',},
+        path: '/login', name: 'Login', meta: {title: 'Login', hidden: true},
         component: () => import('@/views/auth/Login.vue'),
     },
     {
-        path: '/two-factor-challenge', name: 'TwoFactorChallenge', meta: {title: 'TwoFactorChallenge',},
+        path: '/two-factor-challenge', name: 'TwoFactorChallenge', meta: {hidden: true, title: 'TwoFactorChallenge',},
         component: () => import('@/views/auth/TwoFactorChallenge.vue'),
     },    
     {
-        path: '/error/403',
+        path: '/error/403', meta: {hidden: true},
         component: () => import('@/views/error/Error403.vue'),
     },
     {
-        path: '/:catchAll(.*)*',
+        path: '/:catchAll(.*)*', meta: {hidden: true},
         component: () => import('@/views/error/Error404.vue'),
     },
 ]
